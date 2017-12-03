@@ -1,0 +1,14 @@
+---
+- hosts: all
+  user: root
+  become: true
+  gather_facts: no
+
+  tasks:
+    - name: Install http
+      yum: name=httpd state=present   
+    - copy: 
+        src: /root/Ansible/index.html 
+        dest: /var/www/html
+    - service: 
+        name=httpd enabled=yes state=restarted 
