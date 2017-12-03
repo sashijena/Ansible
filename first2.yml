@@ -7,4 +7,6 @@
   tasks:
     - name: dis
 #      command: echo "how are you"
-      debug: msg="my name is sashi"      
+      debug: msg="my name is sashi"
+    - name: installing ntp
+      yum: name="ntp"  state=present      
