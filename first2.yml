@@ -1,0 +1,10 @@
+---
+- hosts: all
+  user: root
+  become: true
+  gather_facts: no
+
+  tasks:
+    - name: dis
+#      command: echo "how are you"
+      debug: msg="my name is sashi"      
