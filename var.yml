@@ -1,0 +1,29 @@
+---
+- hosts: all
+  user: root
+  become: true
+  gather_facts: true
+  vars: 
+    myname: "hello"
+    filename: "test.txt"
+    age: 32
+    epic: True
+  tasks:
+    - name: Display my name
+      debug: msg="my name is {{myname}}"
+    - name: Display my age 
+      debug: msg="My age is {{age}}"
+    - name: create a file
+      file: path="/tmp/{{filename}}" state=touch
+    - name: displaying msg only true
+      debug: msg="I am {{epic}}"
+      when: epic
+    - name: display the operating system
+      debug: msg="I am from Redhat"
+      when: ansible_os_family == "RedHat"
+    - name: display the operating system
+      debug: msg="I am from debian"
+      when: ansible_os_family == "Debian"
+    - name: display the package name 
+      debug: msg="Th is the package name"
+      when: ansible_pkg_mgr == "apt"
