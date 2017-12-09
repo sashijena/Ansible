@@ -6,9 +6,8 @@
 
   tasks:
     - name: Install http
-      yum: name=httpd state=present   
-    - copy: 
-        src: /root/Ansible/index.html 
-        dest: /var/www/html
-    - service: 
-        name=httpd enabled=yes state=restarted 
+      yum: name=httpd state=present
+    - name: copy the index file    
+      copy: src=/root/Ansible/index.html dest=/var/www/html/index.html
+    - name: start service
+      service: name=httpd enabled=yes state=started 
