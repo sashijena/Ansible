@@ -1,0 +1,43 @@
+---
+- hosts: all
+  user: root
+  become: true
+  gather_facts: true
+  vars:
+    myname: "Sashi"
+    Age: 32
+    epic: true
+    number:
+      - 10
+      - 20
+      - 30
+      - 40
+    details:
+       myname: "sashi"
+       age: 40
+       salary: 40
+    users:
+      Dipti:
+        myname: "Dipti"
+        age: "32"
+        salary: "80k"      
+    package:
+        - httpd
+        - ntp 
+        - samba
+  tasks: 
+      - name: looping array element
+        debug: msg="This is an array of numbers{{ item }}"
+       # command: echo "{{ item }}"
+        with_items: "{{ number }}"
+        when: item > 10
+      - name: Installing multiple package 
+        yum: name={{item}} state=present
+        with_items: "{{package}}"
+  tasks:
+      
+      - name: using hash
+        debug: msg="My detials are {{item.key}} {{item.value.myname}} {{item.value.age}} {{item.value.salary}}"
+        with_dict: "{{users}}"
+                                   
+ 
