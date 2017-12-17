@@ -1,0 +1,6 @@
+---
+ - name: copy the ntp.conf file
+   copy: src=ntp.conf dest=/etc/ntp.conf
+ - name: copy ntp.conf.j2 file
+   template: src=ntp.conf.j2 dest=/etc/ntp.conf
+   notify: restart ntp

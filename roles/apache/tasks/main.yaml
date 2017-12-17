@@ -1,10 +1,13 @@
 ---
-    - name: Install http
-      yum: name=httpd state=present
-    - name: copy the index file
-      copy: src=index.html dest=/var/www/html/index.html
-    - name: copy httpd.cof
-      template: src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf
-      notify: restart httpd
-    - name: start http service
-      service: name=httpd enabled=yes state=started
+#    - name: Install http
+#      yum: name=httpd state=present
+#    - name: copy the index file
+#      copy: src=index.html dest=/var/www/html/index.html
+#    - name: copy httpd.cof
+#      template: src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf
+#       notify: restart httpd
+#    - name: start http service
+#      service: name=httpd enabled=yes state=started
+- include: install.yaml
+- include: config.yaml
+- include: service.yaml

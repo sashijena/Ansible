@@ -1,7 +1,0 @@
----
-- hosts: all
-  user: root
-  become: true
-  gather_facts: no
-  roles:
-    - apache

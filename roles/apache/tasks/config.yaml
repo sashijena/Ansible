@@ -1,0 +1,8 @@
+---
+  - name: copy index file 
+    copy: src=index.html dest=/etc/httpd/conf/httpd.conf
+  - name: copy httpd conf
+    template: src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf
+    notify: restart httpd 
+
+
