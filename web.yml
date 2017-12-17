@@ -3,11 +3,18 @@
   user: root
   become: true
   gather_facts: no
-
+  vars:
+    port: 8080
   tasks:
     - name: Install http
       yum: name=httpd state=present
     - name: copy the index file    
       copy: src=/root/Ansible/index.html dest=/var/www/html/index.html
-    - name: start service
+    - name: copy httpd.cof
+      template: src=/root/Ansible/httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf
+      notify: restart httpd
+    - name: start http service
       service: name=httpd enabled=yes state=started 
+  handlers: 
+    - name: restart httpd
+      service: name=httpd  state=restarted 

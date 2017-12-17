@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true
+  user: root
+  gather_facts: True
+  vars:
+    myname: "Sashi Bhusan"
+    epic: False
+  tasks:
+    - name: testing
+      template: src=/root/Ansible/test.j2  dest=/tmp/test 
+    - name: host file 
+      template: src=/root/Ansible/host.j2  dest=/etc/hosts  
+
+
